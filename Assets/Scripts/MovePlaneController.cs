@@ -36,6 +36,7 @@ public class MovePlaneController : MonoBehaviour
                     isMoveFwd = !isMoveFwd;
                 }
             }
+
             if (isMoveFwd && !isMoveBack)
             {
                 if (transform.position.z <= zUpperLimit)
@@ -49,8 +50,24 @@ public class MovePlaneController : MonoBehaviour
                 }
             }
         }
-
-        
-
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerGO.transform.SetParent(transform);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                PlayerGO.transform.parent = null;
+            }
+        }
+    }
+
 }

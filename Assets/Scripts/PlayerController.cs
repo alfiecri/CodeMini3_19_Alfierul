@@ -11,13 +11,12 @@ public class PlayerController : MonoBehaviour
     public GameObject textTimerCounterGO;
     public GameObject PlaneB;
 
-    bool iStartCount = false;
-    public GameObject isHitBox;
+    bool isStartCount = false;
+    public bool isHitBox = false;
 
     float speed = 8;
-    float jumpForce = 15.0f;
     float iCounter = 10;
-    float fTimer = 0;
+    float fTimer = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +27,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (iCounter > 0 && !iStartCount)
+        if (fTimer > 0 && isStartCount)
         {
-            iStartCount = true;
+            fTimer -= Time.deltaTime;
+            iCounter = Mathf.RoundToInt(fTimer);
+            textTimerCounterGO.GetComponent<Text>().text = "Timer countdown: " + iCounter.ToString();
+        }
+        else if (fTimer <= 0 && isStartCount)
+        {
+            PlaneB.GetComponent<Transform>().Rotate(0, 90, 0);
+            fTimer = 10;
+            iCounter = 10;
+            isStartCount = false;
+            textTimerCounterGO.GetComponent<Text>().text = "Timer countdown: " + iCounter.ToString();
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -76,8 +85,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            iStartCount = true;
-
             iCounter -= Time.deltaTime;
             textTimerCounterGO.GetComponent<Text>().text = "Timer countdown: " + Mathf.Round(iCounter);
 
@@ -101,7 +108,17 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("TagCone"))
         {
             Debug.Log("Activated PlaneB 90deg rotation");
+            isStartCount = true;
+            PlaneB.GetComponent<Transform>().Rotate(0, 90, 0);
+        }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("TagBox"))
+        {
+            Debug.Log("Collided with Box!");
+            isHitBox = true;
         }
     }
 }
