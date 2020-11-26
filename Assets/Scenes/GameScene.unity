@@ -1021,8 +1021,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 1396855792}
   playerRb: {fileID: 1160861632}
+  playerRdr: {fileID: 1160861634}
   textTimerCounterGO: {fileID: 1708037219}
   PlaneB: {fileID: 2081072504}
+  playerMats:
+  - {fileID: 2100000, guid: 6ec8142ddbef07b40baa7d496dd00be7, type: 2}
+  - {fileID: 2100000, guid: 52cecfa0516e3984481d920f56f44d2f, type: 2}
+  - {fileID: 2100000, guid: 054a62190eb939b40a970fa06ed097dd, type: 2}
+  - {fileID: 2100000, guid: a7e8ffdded6f95148b3b792c27648a29, type: 2}
   isHitBox: 0
 --- !u!1 &1396855790 stripped
 GameObject:
@@ -1264,7 +1270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -274, y: 114}
+  m_AnchoredPosition: {x: -274, y: 186}
   m_SizeDelta: {x: 250, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708037221

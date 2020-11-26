@@ -15,8 +15,11 @@ public class PlayerController : MonoBehaviour
 
     bool isStartCount = false;
     public bool isHitBox = false;
+    bool isStartJump = false;
 
     float speed = 8;
+    float jumpForce = 6;
+    float jumpTime = 2;
     float iCounter = 10;
     float fTimer = 10;
 
@@ -88,14 +91,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            playerAnim.SetTrigger("jumpTrigger");
+
+            playerRdr.material.color = playerMats[2].color;
+
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            playerRdr.material.color = playerMats[0].color;
-        }
 
-        if (transform.position.y < -5)
+        if (transform.position.y < -10)
         {
             SceneManager.LoadScene("GameOverScene");
         }
