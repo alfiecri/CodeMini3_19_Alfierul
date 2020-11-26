@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
 {
     public Animator playerAnim;
     public Rigidbody playerRb;
+    public Renderer playerRdr;
     public GameObject textTimerCounterGO;
     public GameObject PlaneB;
+    public Material[] playerMats;
 
     bool isStartCount = false;
     public bool isHitBox = false;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
          textTimerCounterGO.GetComponent<Text>().text = "Timer countdown: " + Mathf.RoundToInt(iCounter);
+        playerRdr = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -85,15 +88,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            iCounter -= Time.deltaTime;
-            textTimerCounterGO.GetComponent<Text>().text = "Timer countdown: " + Mathf.Round(iCounter);
 
-
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            playerRdr.material.color = playerMats[0].color;
         }
 
         if (transform.position.y < -5)
         {
-            SceneManager.LoadScene("LoseScene");
+            SceneManager.LoadScene("GameOverScene");
         }
     }
     void startRun()

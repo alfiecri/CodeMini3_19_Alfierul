@@ -7,6 +7,7 @@ TagManager:
   - TagCone
   - PlaneB
   - TagBox
+  - GamePlane
   layers:
   - Default
   - TransparentFX

@@ -17,8 +17,12 @@ public class ButtonController : MonoBehaviour
         
     }
 
-    public void RestartGame()
+    public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
+    }
+    public void StartMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 }
